@@ -1,0 +1,7 @@
+Item 1: 60/10 = 6
+Item 2: 100/20 = 5
+Item 3: 120/30 = 4
+Incluir todo o Item 1 (x1=1). Peso usado: 10kg. Valor: 60.
+Incluir todo o Item 2 (x2=1). Peso usado: 10+20=30kg. Valor: 60+100=160.
+Usar a capacidade restante (20kg) para uma fração do Item 3: x3 = 20/30 = 2/3. Valor adicionado: (2/3) x 120 = 80.
+Valor Máximo: R$ 240,00.
