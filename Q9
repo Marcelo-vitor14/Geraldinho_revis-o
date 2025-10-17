@@ -1,0 +1,5 @@
+Semelhante ao problema 1, como o lucro pode aumentar com o volume total, o problema é ilimitado. Assumindo que a demanda é de exatamente 1.000 litros (Gasolina + Etanol = 1000), a 
+A produção de 1.000 litros de Etanol e 0 litros de Gasolina, gerando um lucro máximo de R$ 2.000,00 (1.000 litros x R$ 2/litro).
+Para maximizar o lucro, deve-se maximizar a quantidade de etanol.
+Solução: Produzir 1.000 litros de etanol e 0 litros de gasolina.
+Lucro Máximo: R$ 2.000,00.
