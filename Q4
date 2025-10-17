@@ -1,0 +1,5 @@
+Enviar 20 unidades da Fábrica 1 para o Armazém A (X_{1A}=20).
+Enviar 20 unidades da Fábrica 1 para o Armazém B (X_{1B}=20).
+Enviar 0 unidades da Fábrica 2 para o Armazém A (X_{2A}=0).
+Enviar 30 unidades da Fábrica 2 para o Armazém B (X_{2B}=30).
+custo minimo =R$130,00
