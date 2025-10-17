@@ -1,0 +1,6 @@
+ Qualquer combinação de A, B e C que satisfaça A+B+C=100.000 e B+2C=100.000 é uma solução válida. Duas soluções extremas são:
+Solução 1: R$ 0 em A, R$ 100.000,00 em B, R$ 0 em C.
+
+Solução 2: R$ 50.000,00 em A, R$ 0 em B, R$ 50.000,00 em C.
+
+Retorno Esperado Máximo: R$ 7.000,00 para qualquer uma das soluções ótimas.
