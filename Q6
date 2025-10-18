@@ -5,3 +5,29 @@ Incluir todo o Item 1 (x1=1). Peso usado: 10kg. Valor: 60.
 Incluir todo o Item 2 (x2=1). Peso usado: 10+20=30kg. Valor: 60+100=160.
 Usar a capacidade restante (20kg) para uma fração do Item 3: x3 = 20/30 = 2/3. Valor adicionado: (2/3) x 120 = 80.
 Valor Máximo: R$ 240,00.
+
+
+import pulp as lp
+
+
+print("\n--- Problema 6: Mochila (Linear Relaxado) ---")
+prob6 = lp.LpProblem("Mochila_Relaxada", lp.LpMaximize)
+
+
+x1 = lp.LpVariable("Item_1", lowBound=0, upBound=1)
+x2 = lp.LpVariable("Item_2", lowBound=0, upBound=1)
+x3 = lp.LpVariable("Item_3", lowBound=0, upBound=1)
+
+
+prob6 += 60*x1 + 100*x2 + 120*x3, "Valor Total" [cite: 35, 36, 37]
+
+
+prob6 += 10*x1 + 20*x2 + 30*x3 <= 50, "Capacidade_Mochila" [cite: 34, 35, 36, 37]
+
+
+prob6.solve()
+print(f"Status: {lp.LpStatus[prob6.status]}")
+print(f"Fração Item 1: {x1.varValue:.2f}")
+print(f"Fração Item 2: {x2.varValue:.2f}")
+print(f"Fração Item 3: {x3.varValue:.2f}")
+print(f"Valor Máximo Total: R$ {lp.value(prob6.objective):.2f}")
