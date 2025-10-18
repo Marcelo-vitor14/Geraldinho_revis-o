@@ -2,3 +2,31 @@ Contratar os funcionários de menor custo para cada turno para atender à demand
 Manhã: 3 funcionários do tipo X. Custo: 3 x 80 = R$ 240.
 Tarde: 4 funcionários do tipo Y. Custo: 4 x 90 = R$ 360.
 Custo Mínimo Total: R$ 600,00.
+
+
+import pulp as lp
+
+
+print("\n--- Problema 5: Escala de Funcionários ---")
+prob5 = lp.LpProblem("Escala_Loja", lp.LpMinimize)
+
+
+X = lp.LpVariable("Func_X_Manha", lowBound=0, cat='Integer')
+Y = lp.LpVariable("Func_Y_Tarde", lowBound=0, cat='Integer')
+Zm = lp.LpVariable("Func_Z_Manha", lowBound=0, cat='Integer')
+Zt = lp.LpVariable("Func_Z_Tarde", lowBound=0, cat='Integer')
+
+prob5 += 80*X + 90*Y + 150*Zm + 150*Zt, "Custo Total" [cite: 29, 30, 31]
+
+
+prob5 += X + Zm >= 3, "Minimo_Manha" [cite: 28]
+prob5 += Y + Zt >= 4, "Minimo_Tarde" [cite: 28]
+
+
+prob5.solve()
+print(f"Status: {lp.LpStatus[prob5.status]}")
+print(f"Funcionários X (Manhã): {X.varValue:.0f}")
+print(f"Funcionários Y (Tarde): {Y.varValue:.0f}")
+print(f"Funcionários Z (Manhã): {Zm.varValue:.0f}")
+print(f"Funcionários Z (Tarde): {Zt.varValue:.0f}")
+print(f"Custo Mínimo Total: R$ {lp.value(prob5.objective):.2f}")
