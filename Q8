@@ -1,3 +1,25 @@
 A produção ótima é de 20 unidades do produto X e 15 unidades do produto Y.
 
 Lucro Máximo: R$ 775,00.
+
+import pulp as lp
+
+
+print("\n--- Problema 8: Produção X e Y ---")
+prob8 = lp.LpProblem("Producao_XY", lp.LpMaximize)
+
+
+X = lp.LpVariable("Produto_X", lowBound=0)
+Y = lp.LpVariable("Produto_Y", lowBound=0)
+
+prob8 += 20*X + 25*Y, "Lucro Total" [cite: 48] 
+
+prob8 += 2*X + 4*Y <= 100, "Horas_Maquina" [cite: 49, 50, 51]
+prob8 += 3*X + 2*Y <= 90, "Horas_Mao_Obra" [cite: 49, 50, 51]
+
+
+prob8.solve()
+print(f"Status: {lp.LpStatus[prob8.status]}")
+print(f"Produção de X: {X.varValue:.2f} unidades")
+print(f"Produção de Y: {Y.varValue:.2f} unidades")
+print(f"Lucro Máximo: R$ {lp.value(prob8.objective):.2f}")
