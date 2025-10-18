@@ -1,3 +1,27 @@
 Calorias: 200 + 150 >= 800
 
 Para minimizar o custo, deve-se consumir o alimento com menor custo por caloria.Para atingir 800 kcal, são necessárias 4 porções de arroz.
+
+
+import pulp as lp
+
+
+print("\n--- Problema 3: Problema da Dieta ---")
+prob3 = lp.LpProblem("Dieta_Minima", lp.LpMinimize)
+
+
+arroz = lp.LpVariable("Arroz", lowBound=0, cat='Continuous')
+feijao = lp.LpVariable("Feijao", lowBound=0, cat='Continuous')
+
+
+prob3 += 1*arroz + 1.20*feijao, "Custo Total" [cite: 15, 16]
+
+
+prob3 += 200*arroz + 150*feijao >= 800, "Minimo_Kcal" [cite: 15, 16, 17]
+
+
+prob3.solve()
+print(f"Status: {lp.LpStatus[prob3.status]}")
+print(f"Arroz: {arroz.varValue:.2f} porções")
+print(f"Feijão: {feijao.varValue:.2f} porções")
+print(f"Custo Mínimo: R$ {lp.value(prob3.objective):.2f}")
