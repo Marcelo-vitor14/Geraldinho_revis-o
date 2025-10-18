@@ -4,3 +4,31 @@ Solução 1: R$ 0 em A, R$ 100.000,00 em B, R$ 0 em C.
 Solução 2: R$ 50.000,00 em A, R$ 0 em B, R$ 50.000,00 em C.
 
 Retorno Esperado Máximo: R$ 7.000,00 para qualquer uma das soluções ótimas.
+
+import pulp as lp
+
+
+print("\n--- Problema 10: Alocação de Portfólio ---")
+prob10 = lp.LpProblem("Portfolio_Investimento", lp.LpMaximize)
+
+
+A = lp.LpVariable("Acoes_A", lowBound=0)
+B = lp.LpVariable("Acoes_B", lowBound=0)
+C = lp.LpVariable("Acoes_C", lowBound=0)
+
+
+prob10 += 0.05*A + 0.07*B + 0.09*C, "Retorno Total" [cite: 61, 62, 63]
+
+
+prob10 += A + B + C == 100000, "Total_Investido" [cite: 65]
+
+
+prob10 += 0.03*A + 0.06*B + 0.09*C <= 6000, "Risco_Medio_Max" [cite: 61, 62, 63, 64]
+
+
+prob10.solve()
+print(f"Status: {lp.LpStatus[prob10.status]}")
+print(f"Investir em A: R$ {A.varValue:.2f}")
+print(f"Investir em B: R$ {B.varValue:.2f}")
+print(f"Investir em C: R$ {C.varValue:.2f}")
+print(f"Retorno Máximo Esperado: R$ {lp.value(prob10.objective):.2f}")
