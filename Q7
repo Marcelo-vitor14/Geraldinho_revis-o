@@ -1,3 +1,27 @@
 Por enumeração das combinações, a que gera maior retorno dentro do orçamento é investir nos projetos A e B.
 Investimento: R$40.000 + R$50.000 = R$ 90.000.
 Retorno Máximo: R$4.000 + R$7.500 = R$ 11.500.
+
+import pulp as lp
+
+print("\n--- Problema 7: Investimento em Projetos ---")
+prob7 = lp.LpProblem("Investimento_Binario", lp.LpMaximize)
+
+
+A = lp.LpVariable("Projeto_A", cat='Binary')
+B = lp.LpVariable("Projeto_B", cat='Binary')
+C = lp.LpVariable("Projeto_C", cat='Binary')
+
+
+
+prob7 += 4000*A + 7500*B + 3600*C, "Retorno Total" [cite: 41, 42, 43]
+
+
+prob7 += 40000*A + 50000*B + 30000*C <= 100000, "Orcamento" [cite: 40, 41, 42, 43]
+
+prob7.solve()
+print(f"Status: {lp.LpStatus[prob7.status]}")
+print(f"Investir no Projeto A (0=Não, 1=Sim): {A.varValue:.0f}")
+print(f"Investir no Projeto B (0=Não, 1=Sim): {B.varValue:.0f}")
+print(f"Investir no Projeto C (0=Não, 1=Sim): {C.varValue:.0f}")
+print(f"Retorno Máximo: R$ {lp.value(prob7.objective):.2f}")
