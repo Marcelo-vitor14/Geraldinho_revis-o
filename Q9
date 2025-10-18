@@ -3,3 +3,30 @@ A produção de 1.000 litros de Etanol e 0 litros de Gasolina, gerando um lucro 
 Para maximizar o lucro, deve-se maximizar a quantidade de etanol.
 Solução: Produzir 1.000 litros de etanol e 0 litros de gasolina.
 Lucro Máximo: R$ 2.000,00.
+
+import pulp as lp
+
+
+print("\n--- Problema 9: Mistura de Combustível ---")
+prob9 = lp.LpProblem("Mistura_Combustivel", lp.LpMaximize)
+
+
+G = lp.LpVariable("Gasolina", lowBound=0)
+E = lp.LpVariable("Etanol", lowBound=0)
+
+
+prob9 += 1*G + 2*E, "Lucro Total" [cite: 54, 57]
+
+
+prob9 += G + E == 1000, "Demanda_Exata" [cite: 56]
+
+
+
+prob9 += 0.7*E - 0.3*G >= 0, "Composicao_Etanol" [cite: 55]
+
+
+prob9.solve()
+print(f"Status: {lp.LpStatus[prob9.status]}")
+print(f"Litros de Gasolina: {G.varValue:.2f}")
+print(f"Litros de Etanol: {E.varValue:.2f}")
+print(f"Lucro Máximo (para 1000L): R$ {lp.value(prob9.objective):.2f}")
