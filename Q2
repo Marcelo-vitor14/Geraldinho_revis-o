@@ -1,2 +1,25 @@
 A produção ótima ocorre quando se produz 0 unidades do Produto A e 40 unidades do Produto B.
 Lucro maximo = R$1200
+
+import pulp as lp
+
+
+print("\n--- Problema 2: Produção de Dois Produtos ---")
+prob2 = lp.LpProblem("Producao_AB", lp.LpMaximize)
+
+
+A = lp.LpVariable("Produto_A", lowBound=0, cat='Continuous') 
+B = lp.LpVariable("Produto_B", lowBound=0, cat='Continuous')
+
+
+prob2 += 40*A + 30*B, "Lucro Total"
+
+
+prob2 += 2*A + 1*B <= 40, "Horas_Maquina"
+
+
+prob2.solve()
+print(f"Status: {lp.LpStatus[prob2.status]}")
+print(f"Produto A: {A.varValue:.2f} unidades")
+print(f"Produto B: {B.varValue:.2f} unidades")
+print(f"Lucro Máximo: R$ {lp.value(prob2.objective):.2f}")
